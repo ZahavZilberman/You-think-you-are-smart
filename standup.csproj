@@ -73,9 +73,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HighScore.xml" />
-    <Content Include="Question1.wav" />
+    <Content Include="HowManyTimesyYouPlayedToday.txt" />
+    <Content Include="OtherSounds\DefaultOpening.wav" />
+    <Content Include="OtherSounds\Instructions.wav" />
+    <Content Include="OtherSounds\NewYear.wav" />
+    <Content Include="OtherSounds\PlayTodayAgain.wav" />
+    <Content Include="OtherSounds\Saturday.wav" />
+    <Content Include="OtherSounds\SkippedInstructions.wav" />
+    <Content Include="QuestionSound\Question1.wav" />
     <Content Include="Questions.xml" />
-    <Content Include="Question1.txt" />
+    <Content Include="QuestionsText\Question1.txt" />
+    <Content Include="TrapQuestions.xml" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
@@ -98,6 +106,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NameSounds\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

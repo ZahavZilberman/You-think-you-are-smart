@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Xml.Linq;
 using System.Media;
+using System.Threading;
 
 namespace standup
 {
@@ -17,7 +18,7 @@ namespace standup
             HighScoreDocument = new XDocument(@"standup/HighScore.xml");
             scores = new List<XElement>(HighScoreDocument.Root.Elements("Score"));
             gamePlayers = game.GamePlayers;
-            PathToStupidGameOverSoundEffect = @"standup/HighScoreSound.wav";
+            PathToStupidGameOverSoundEffect = @"standup/OtherSounds/HighScoreSound.wav";
         }
 
         #endregion
