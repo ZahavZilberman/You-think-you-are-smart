@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GameQuestions>
+  <Question>
+    <QuestionText>Question1.txt</QuestionText>
+    <Sound>Question1.wav</Sound>
+    <Answer>true</Answer>
+  </Question>
+</GameQuestions> 

@@ -1,0 +1,10 @@
+C:\Users\Owner\AppData\Local\Temporary Projects\standup\bin\Release\standup.exe
+C:\Users\Owner\AppData\Local\Temporary Projects\standup\bin\Release\standup.pdb
+C:\Users\Owner\AppData\Local\Temporary Projects\standup\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Owner\AppData\Local\Temporary Projects\standup\obj\Release\standup.exe
+C:\Users\Owner\AppData\Local\Temporary Projects\standup\obj\Release\standup.pdb
+E:\standup\standup\standup\obj\Release\standup.exe
+E:\standup\standup\standup\obj\Release\ResolveAssemblyReference.cache
+E:\standup\standup\standup\bin\Release\standup.exe
+E:\standup\standup\standup\bin\Release\standup.pdb
+E:\standup\standup\standup\obj\Release\standup.pdb
