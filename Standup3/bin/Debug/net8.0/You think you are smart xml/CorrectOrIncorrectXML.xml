@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CorrectOrIncorrect>
+  <Question>
+    <Text>You-think-you-are-smart\CorrectOrIncorrectQuestions\Question1.txt</Text>
+    <Answer>True</Answer>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\CorrectOrIncorrectQuestions\Question2.txt</Text>
+    <Answer>False</Answer>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\CorrectOrIncorrectQuestions\Question2.txt</Text>
+    <Answer>False</Answer>
+  </Question>
+</CorrectOrIncorrect>

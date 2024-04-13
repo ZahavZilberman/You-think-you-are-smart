@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WhoAmI>
+  <Question>
+    <Answer>You-think-you-are-smart\WhoAmIQuestions\Question1\answer.txt</Answer>
+    <Clue1>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question1\clue1.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question1\clue1.wav</Sound>
+    </Clue1>
+    <Clue2>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question1\clue2.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question1\clue2.wav</Sound>
+    </Clue2>
+    <Clue3>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question1\clue3.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question1\clue3.wav</Sound>
+    </Clue3>
+    <Clue4>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question1\clue4.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question1\clue4.wav</Sound>
+    </Clue4>
+    <Number>1</Number>
+    <InCompleteAnswer>Os</InCompleteAnswer>
+  </Question>
+  <Question>
+    <Answer>You-think-you-are-smart\WhoAmIQuestions\Question2\answer.txt</Answer>
+    <Clue1>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question2\clue1.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question2\clue1.wav</Sound>
+    </Clue1>
+    <Clue2>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question2\clue2.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question2\clue2.wav</Sound>
+    </Clue2>
+    <Clue3>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question2\clue3.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question2\clue3.wav</Sound>
+    </Clue3>
+    <Clue4>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question2\clue4.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question2\clue4.wav</Sound>
+    </Clue4>
+    <Number>2</Number>
+    <InCompleteAnswer>A____ H____</InCompleteAnswer>
+  </Question>
+  <Question>
+    <Answer>You-think-you-are-smart\WhoAmIQuestions\Question3\answer.txt</Answer>
+    <Clue1>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question3\clue1.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question3\clue1.wav</Sound>
+    </Clue1>
+    <Clue2>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question3\clue2.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question3\clue2.wav</Sound>
+    </Clue2>
+    <Clue3>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question3\clue3.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question3\clue3.wav</Sound>
+    </Clue3>
+    <Clue4>
+      <Text>You-think-you-are-smart\WhoAmIQuestions\Question3\clue4.txt</Text>
+      <Sound>You-think-you-are-smart\WhoAmIQuestions\Question3\clue4.wav</Sound>
+    </Clue4>
+    <Number>3</Number>
+    <InCompleteAnswer>Mo___ D__</InCompleteAnswer>
+  </Question>
+</WhoAmI>
