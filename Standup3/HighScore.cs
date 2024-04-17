@@ -16,7 +16,7 @@ namespace standup
         public HighScore(Game game)
         {
             game.IsGameOver = true;
-            HighScoreDocument = new XDocument(@"You think you are smart xml/HighScore.xml");
+            HighScoreDocument = new XDocument(XDocument.Load(@"You think you are smart xml/HighScore.xml"));
             scores = new List<XElement>(HighScoreDocument.Root.Elements("Score"));
             gamePlayers = game.GamePlayers;
             PathToStupidGameOverSoundEffect = @"standup/OtherSounds/HighScoreSound.wav";

@@ -14,17 +14,17 @@ namespace standup
 
         public CorrectOrFalse(Game game, int player)
         {
-            playerForChellenge = game.GamePlayers.ElementAt(player - 1);
+            playerForChellenge = game.GamePlayers.ElementAt(player);
 
             MoneyOnTheTable = playerForChellenge.PreTrapSum * 2;
             QuestionsDocument = new XDocument(XDocument.Load($@"You think you are smart xml\CorrectOrIncorrectXML.xml"));
             questions = QuestionsDocument.Root.Elements().ToList();
-            playerForChellenge = game.GamePlayers.ElementAt(player - 1);
+            playerForChellenge = game.GamePlayers.ElementAt(player);
             ActualQuestions = new List<TrueOrFalseQuestion>();
 
             game.IsOnCorrectOrFalseMode = true;
             //MusicPath = @"standup/CorrectOrFalse.mp3";
-            InstrcutionsPath = $@"You-think-you-are-smart\CorrectOrIncorrectQuestions\Instructions.wav""";
+            InstrcutionsPath = $@"You-think-you-are-smart\CorrectOrIncorrectQuestions\Instructions.wav";
             IEnumerable<XElement> questionsIenumerable = QuestionsDocument.Root.Elements(@"Question");
             questions = questionsIenumerable.ToList();
 
@@ -38,7 +38,7 @@ namespace standup
             }
 
             Random rnd = new Random();
-            int ChoosenQuestion = rnd.Next(0, ActualQuestions.Count - 1);
+            int ChoosenQuestion = rnd.Next(0, ActualQuestions.Count);
             for (int i = 0; i < ActualQuestions.Count; i++)
             {
                 if (ChoosenQuestion == i)

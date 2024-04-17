@@ -14,6 +14,8 @@ namespace standup
 
         public Player(int PlayerNum, string Name)
         {
+            PositionInHighScore = 0;
+
             PreTrapSum = 0;
             TrapSum = 0;
             GameSum = 0;
@@ -68,6 +70,7 @@ namespace standup
         public int PlayerPosition { get; set; }
         public bool HasThePlayerChoosenAnswer { get; set; }
         public int WrongAnswerChoosen { get; set; }
+        public int PositionInHighScore { get; set; }
 
         #endregion
     }
