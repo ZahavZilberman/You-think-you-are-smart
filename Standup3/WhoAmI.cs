@@ -34,6 +34,8 @@ namespace standup
 
             int NumberOfQuestions = QuestionsList.Count;
 
+            int EndIndexOfAll = QuestionsList.Count * 4;
+
             for (int i = 0; i < NumberOfQuestions; i++)
             {
                 XElement QuestionNumber = QuestionsList[i].Element("Number");
@@ -66,12 +68,14 @@ namespace standup
                 string Clue3Text = File.ReadAllText(Clue3TextPath);
                 Clues.Add(Clue3Text);
 
-                string Clue4Text = File.ReadAllText(Clue1TextPath);
+                string Clue4TextPath = Clue4.Element("Text").Value;
+                string Clue4Text = File.ReadAllText(Clue4TextPath);
                 Clues.Add(Clue4Text);
 
                 string InCompleteAnswer = QuestionsList.ElementAt(i).Element("InCompleteAnswer").Value;
 
-                WhoAmIQuestion AQuestion = new WhoAmIQuestion(ItsNumber, SoundPathes, Clues, answer, InCompleteAnswer);
+
+                WhoAmIQuestion AQuestion = new WhoAmIQuestion(ItsNumber, SoundPathes, Clues, answer, InCompleteAnswer, EndIndexOfAll);
                 whoAmIQuestionsList.Add(AQuestion);
             }
 
@@ -80,13 +84,13 @@ namespace standup
 
             Random rnd = new Random();
             int randomQuestion = rnd.Next(0, NumberOfQuestions);
-            for (int i = 0; i < whoAmIQuestionsList.Count - 1; i++)
+            for (int i = 0; i < whoAmIQuestionsList.Count; i++)
             {
                 if (i == randomQuestion)
                 {
+                    //choosenQuestion = new WhoAmIQuestion(whoAmIQuestionsList.ElementAt(i).QuestionNumber, whoAmIQuestionsList.ElementAt(i).CluesSoundPathes, whoAmIQuestionsList.ElementAt(i).ClueText, whoAmIQuestionsList.ElementAt(i).CorrectAnswer, whoAmIQuestionsList.ElementAt(i).InCompleteAnswer, EndIndexOfAll); 
                     choosenQuestion = whoAmIQuestionsList.ElementAt(i);
                 }
-
             }
         }
 

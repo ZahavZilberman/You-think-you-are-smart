@@ -19,7 +19,7 @@
       <Sound>You-think-you-are-smart\WhoAmIQuestions\Question1\clue4.wav</Sound>
     </Clue4>
     <Number>1</Number>
-    <InCompleteAnswer>Os</InCompleteAnswer>
+    <InCompleteAnswer>Os__</InCompleteAnswer>
   </Question>
   <Question>
     <Answer>You-think-you-are-smart\WhoAmIQuestions\Question2\answer.txt</Answer>

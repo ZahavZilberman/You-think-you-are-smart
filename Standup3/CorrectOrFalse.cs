@@ -38,10 +38,10 @@ namespace standup
             }
 
             Random rnd = new Random();
-            int ChoosenQuestion = rnd.Next(0, ActualQuestions.Count);
+            int ChoosenQuestion = rnd.Next(1, ActualQuestions.Count + 1);
             for (int i = 0; i < ActualQuestions.Count; i++)
             {
-                if (ChoosenQuestion == i)
+                if (ChoosenQuestion - 1 == i)
                 {
                     ChoosenQuestionRandom = new TrueOrFalseQuestion(playerForChellenge, ActualQuestions.ElementAt(i).QuestionContent, ActualQuestions.ElementAt(i).answer);
                 }

@@ -13,16 +13,34 @@ namespace standup
     {
         #region ctr
 
-        public WhoAmIQuestion(int questionNumber, List<string> SoundPathes, List<string> Clues, string answer, string inCompleteAnswer)
+        public WhoAmIQuestion(int questionNumber, List<string> SoundPathes, List<string> Clues, string answer, string inCompleteAnswer, int EndIndexOfAll)
         {
+            CluesSoundPathes = new List<string>();
+            ClueText = new List<string>();
+
             QuestionNumber = questionNumber;
-            CluesSoundPathes = SoundPathes;
-            ClueText = Clues;
+            int StartIndex = ((questionNumber - 1) * 4);
+            int EndIndex = (((questionNumber - 1) * 4) + 4);
+
+            for (int i = StartIndex; i < EndIndex; i++)
+            {
+                CluesSoundPathes.Add($@"{SoundPathes.ElementAt(i)}");
+                ClueText.Add(Clues.ElementAt(i));
+            }
+
             CorrectAnswer = answer;
             InCompleteAnswer = inCompleteAnswer;
             Money = 10000;
             TotalSecondsForAnswer = 25;
             TimeLeft = 25;
+
+            CluesSoundPlayers = new List<SoundPlayer>();
+
+            foreach(string ClueSoundPath in CluesSoundPathes)
+            {
+                SoundPlayer soundPlayer = new SoundPlayer($@"{ClueSoundPath}");
+                CluesSoundPlayers.Add(soundPlayer);
+            }
         }
 
         #endregion
@@ -38,6 +56,7 @@ namespace standup
         public List<string> CluesSoundPathes { get; set; }
         public int QuestionNumber { get; set; }
         public string InCompleteAnswer { get; set; }
+        public List<SoundPlayer> CluesSoundPlayers { get; set; }
 
 
         #endregion
