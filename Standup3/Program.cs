@@ -25,6 +25,8 @@ namespace standup
 
             for (int repeat = 0; repeat < double.MaxValue; repeat++)
             {
+                Console.Clear();
+
                 Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 
@@ -248,9 +250,10 @@ namespace standup
 
                 Game game = new Game(players, ChoosenQuestions, numOfPlayers);
                 //GetAllObjectsAndStart(game);
+                //game.GameOver(game);
                 game.Instructions();
                 Console.Clear();
-                game.GameStart(game);
+                game.NextTurn(game, game.GamePlayers.ElementAt(0));
 
                 #endregion
 

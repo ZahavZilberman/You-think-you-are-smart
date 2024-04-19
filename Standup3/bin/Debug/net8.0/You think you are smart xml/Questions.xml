@@ -18,7 +18,7 @@
   </Question>
   <Question>
     <Text>You-think-you-are-smart\QuestionsText\Subject2\Question3\Question3.txt</Text>
-    <Sound>You-think-you-are-smart\QuestionSound\Subject2\Question3.wav</Sound>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject2\‏‏Question3.wav</Sound>
     <Answer>3</Answer>
     <Subject>Subject2</Subject>
     <Number>3</Number>
@@ -26,7 +26,7 @@
   </Question>
   <Question>
     <Text>You-think-you-are-smart\QuestionsText\Subject2\Question4\Question4.txt</Text>
-    <Sound>You-think-you-are-smart\QuestionSound\Subject2\Question4.wav</Sound>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject2\‏‏Question4.wav</Sound>
     <Answer>4</Answer>
     <Subject>Subject2</Subject>
     <Number>4</Number>
@@ -34,7 +34,7 @@
   </Question>
   <Question>
     <Text>You-think-you-are-smart\QuestionsText\Subject3\Question5\Question5.txt</Text>
-    <Sound>You-think-you-are-smart\QuestionSound\Subject3\Question5.wav</Sound>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
     <Answer>1</Answer>
     <Subject>Subject3</Subject>
     <Number>5</Number>
