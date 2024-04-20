@@ -10,13 +10,27 @@ using System.Text;
 using System.Numerics;
 using NAudio;
 using NAudio.Wave;
+using System.Runtime.InteropServices;
 
 namespace standup
 {
     class Program
     {
+        const uint ENABLE_QUICK_EDIT_MODE = 0x0040;
+        const uint ENABLE_EXTENDED_FLAGS = 0x0080;
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool GetConsoleMode(IntPtr hConsoleHandle, out uint lpMode);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern bool SetConsoleMode(IntPtr hConsoleHandle, uint dwMode);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        static extern IntPtr GetStdHandle(int nStdHandle);
+
         public static void Main()
         {
+            DisableQuickEditMode();
 
             // You may have to add the special command that clears the console
             Console.Title = "You think you are smart - The edition of The abnormal thinker";
@@ -270,6 +284,25 @@ namespace standup
             Trap trap = new Trap(game);
             WhoAmI whoami = new WhoAmI(game);
             CorrectOrFalse correctorfalse = new CorrectOrFalse(game, 1);
+        }
+
+        public static void DisableQuickEditMode()
+        {
+            IntPtr consoleHandle = GetStdHandle(-10);  // -10 is STD_INPUT_HANDLE
+            if (!GetConsoleMode(consoleHandle, out uint consoleMode))
+            {
+                Console.WriteLine("Failed to get console mode.");
+                return;
+            }
+
+            // Remove the quick edit mode and enable extended flags
+            consoleMode &= ~ENABLE_QUICK_EDIT_MODE;
+            consoleMode |= ENABLE_EXTENDED_FLAGS;
+
+            if (!SetConsoleMode(consoleHandle, consoleMode))
+            {
+                Console.WriteLine("Failed to set console mode.");
+            }
         }
     }
 }

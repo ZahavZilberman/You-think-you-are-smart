@@ -1,51 +1,339 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <GameQuestions>
   <Question>
-    <Text>You-think-you-are-smart\QuestionsText\Subject1\Question1\Question1.txt</Text>
+    <Text>You-think-you-are-smart\QuestionsText\But that is bullshit!\Question1\Question1.txt</Text>
     <Sound>You-think-you-are-smart\QuestionSound\Subject1\Question1.wav</Sound>
     <Answer>2</Answer>
     <Number>1</Number>
-    <Subject>Subject1</Subject>
+    <Subject>But that is bullshit!</Subject>
     <Name>Question1</Name>
   </Question>
   <Question>
-    <Text>You-think-you-are-smart\QuestionsText\Subject1\Question2\Question2.txt</Text>
+    <Text>You-think-you-are-smart\QuestionsText\But that is bullshit!\Question2\Question2.txt</Text>
     <Sound>You-think-you-are-smart\QuestionSound\Subject1\Question2.wav</Sound>
-    <Answer>2</Answer>
+    <Answer>3</Answer>
     <Number>2</Number>
-    <Subject>Subject1</Subject>
+    <Subject>But that is bullshit!</Subject>
     <Name>Question2</Name>
   </Question>
   <Question>
-    <Text>You-think-you-are-smart\QuestionsText\Subject2\Question3\Question3.txt</Text>
+    <Text>You-think-you-are-smart\QuestionsText\But that is bullshit!\Question3\Question3.txt</Text>
     <Sound>You-think-you-are-smart\QuestionSound\Subject2\‏‏Question3.wav</Sound>
-    <Answer>3</Answer>
-    <Subject>Subject2</Subject>
+    <Answer>2</Answer>
+    <Subject>But that is bullshit!</Subject>
     <Number>3</Number>
     <Name>Question3</Name>
   </Question>
   <Question>
-    <Text>You-think-you-are-smart\QuestionsText\Subject2\Question4\Question4.txt</Text>
+    <Text>You-think-you-are-smart\QuestionsText\But that is bullshit!\Question4\Question4.txt</Text>
     <Sound>You-think-you-are-smart\QuestionSound\Subject2\‏‏Question4.wav</Sound>
     <Answer>4</Answer>
-    <Subject>Subject2</Subject>
+    <Subject>But that is bullshit!</Subject>
     <Number>4</Number>
     <Name>Question4</Name>
   </Question>
   <Question>
-    <Text>You-think-you-are-smart\QuestionsText\Subject3\Question5\Question5.txt</Text>
+    <Text>You-think-you-are-smart\QuestionsText\But that is bullshit!\Question5\Question5.txt</Text>
     <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
-    <Answer>1</Answer>
-    <Subject>Subject3</Subject>
+    <Answer>4</Answer>
+    <Subject>But that is bullshit!</Subject>
     <Number>5</Number>
-    <Name>5</Name>
+    <Name>Question5</Name>
   </Question>
   <Question>
-    <Text>You-think-you-are-smart\QuestionsText\Subject3\Question6\Question6.txt</Text>
-    <Sound>You-think-you-are-smart\QuestionSound\Subject3\Question6.wav</Sound>
-    <Answer>2</Answer>
-    <Subject>Subject3</Subject>
+    <Text>You-think-you-are-smart\QuestionsText\I am the best Otaku!!\Question6\Question6.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>I am the best Otaku!!</Subject>
     <Number>6</Number>
-    <Name>6</Name>
+    <Name>Question6</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\I am the best Otaku!!\Question7\Question7.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>4</Answer>
+    <Subject>I am the best Otaku!!</Subject>
+    <Number>7</Number>
+    <Name>Question7</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\I am the best Otaku!!\Question8\Question8.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>I am the best Otaku!!</Subject>
+    <Number>8</Number>
+    <Name>Question8</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\I am the best Otaku!!\Question9\Question9.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>1</Answer>
+    <Subject>I am the best Otaku!!</Subject>
+    <Number>9</Number>
+    <Name>Question9</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\I am the best Otaku!!\Question10\Question10.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>2</Answer>
+    <Subject>I am the best Otaku!!</Subject>
+    <Number>10</Number>
+    <Name>Question10</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\It is so tasty\Question11\Question11.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>2</Answer>
+    <Subject>It is so tasty</Subject>
+    <Number>11</Number>
+    <Name>Question11</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\It is so tasty\Question12\Question12.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>It is so tasty</Subject>
+    <Number>12</Number>
+    <Name>Question12</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\It is so tasty\Question13\Question13.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>4</Answer>
+    <Subject>It is so tasty</Subject>
+    <Number>13</Number>
+    <Name>Question13</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\It is so tasty\Question14\Question14.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>1</Answer>
+    <Subject>It is so tasty</Subject>
+    <Number>14</Number>
+    <Name>Question14</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\It is so tasty\Question15\Question15.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>4</Answer>
+    <Subject>It is so tasty</Subject>
+    <Number>15</Number>
+    <Name>Question15</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\We will engineer the shit out of it!\Question16\Question16.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>We will engineer the shit out of it!</Subject>
+    <Number>16</Number>
+    <Name>Question16</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\We will engineer the shit out of it!\Question17\Question17.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>2</Answer>
+    <Subject>We will engineer the shit out of it!</Subject>
+    <Number>17</Number>
+    <Name>Question17</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\We will engineer the shit out of it!\Question18\Question18.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>1</Answer>
+    <Subject>We will engineer the shit out of it!</Subject>
+    <Number>18</Number>
+    <Name>Question18</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\We will engineer the shit out of it!\Question19\Question19.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>We will engineer the shit out of it!</Subject>
+    <Number>19</Number>
+    <Name>Question19</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\We will engineer the shit out of it!\Question20\Question20.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>1</Answer>
+    <Subject>We will engineer the shit out of it!</Subject>
+    <Number>20</Number>
+    <Name>Question20</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Once upon a time\Question21\Question21.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>2</Answer>
+    <Subject>Once upon a time</Subject>
+    <Number>21</Number>
+    <Name>Question21</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Once upon a time\Question22\Question22.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>1</Answer>
+    <Subject>Once upon a time</Subject>
+    <Number>22</Number>
+    <Name>Question22</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Once upon a time\Question23\Question23.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>2</Answer>
+    <Subject>Once upon a time</Subject>
+    <Number>23</Number>
+    <Name>Question23</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Once upon a time\Question24\Question24.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>4</Answer>
+    <Subject>Once upon a time</Subject>
+    <Number>24</Number>
+    <Name>Question24</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Once upon a time\Question25\Question25.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>Once upon a time</Subject>
+    <Number>25</Number>
+    <Name>Question25</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\I reached a spritual enlightement!\Question26\Question26.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>I reached a spritual enlightement!</Subject>
+    <Number>26</Number>
+    <Name>Question26</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\I reached a spritual enlightement!\Question27\Question27.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>4</Answer>
+    <Subject>I reached a spritual enlightement!</Subject>
+    <Number>27</Number>
+    <Name>Question27</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\I reached a spritual enlightement!\Question28\Question28.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>4</Answer>
+    <Subject>I reached a spritual enlightement!</Subject>
+    <Number>28</Number>
+    <Name>Question28</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\I reached a spritual enlightement!\Question29\Question29.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>1</Answer>
+    <Subject>I reached a spritual enlightement!</Subject>
+    <Number>29</Number>
+    <Name>Question29</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\I reached a spritual enlightement!\Question30\Question30.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>I reached a spritual enlightement!</Subject>
+    <Number>30</Number>
+    <Name>Question30</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Actual science\Question31\Question31.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>2</Answer>
+    <Subject>Actual science</Subject>
+    <Number>31</Number>
+    <Name>Question31</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Actual science\Question32\Question32.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>1</Answer>
+    <Subject>Actual science</Subject>
+    <Number>32</Number>
+    <Name>Question32</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Actual science\Question32\Question32.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>1</Answer>
+    <Subject>Actual science</Subject>
+    <Number>32</Number>
+    <Name>Question32</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Actual science\Question33\Question33.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>2</Answer>
+    <Subject>Actual science</Subject>
+    <Number>33</Number>
+    <Name>Question33</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Actual science\Question34\Question34.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>2</Answer>
+    <Subject>Actual science</Subject>
+    <Number>34</Number>
+    <Name>Question34</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\Actual science\Question35\Question35.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>Actual science</Subject>
+    <Number>35</Number>
+    <Name>Question35</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\How on earth can academic philosophy be intresting\Question36\Question36.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>2</Answer>
+    <Subject>How on earth can academic philosophy be intresting</Subject>
+    <Number>36</Number>
+    <Name>Question36</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\How on earth can academic philosophy be intresting\Question37\Question37.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>1</Answer>
+    <Subject>How on earth can academic philosophy be intresting</Subject>
+    <Number>37</Number>
+    <Name>Question37</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\How on earth can academic philosophy be intresting\Question38\Question38.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>How on earth can academic philosophy be intresting</Subject>
+    <Number>37</Number>
+    <Name>Question38</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\How on earth can academic philosophy be intresting\Question38\Question38.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>How on earth can academic philosophy be intresting</Subject>
+    <Number>38</Number>
+    <Name>Question38</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\How on earth can academic philosophy be intresting\Question39\Question39.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>3</Answer>
+    <Subject>How on earth can academic philosophy be intresting</Subject>
+    <Number>39</Number>
+    <Name>Question39</Name>
+  </Question>
+  <Question>
+    <Text>You-think-you-are-smart\QuestionsText\How on earth can academic philosophy be intresting\Question40\Question40.txt</Text>
+    <Sound>You-think-you-are-smart\QuestionSound\Subject3\‏‏Question5.wav</Sound>
+    <Answer>2</Answer>
+    <Subject>How on earth can academic philosophy be intresting</Subject>
+    <Number>40</Number>
+    <Name>Question40</Name>
   </Question>
 </GameQuestions> 

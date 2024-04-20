@@ -244,7 +244,7 @@ namespace standup
         #region Next turn
 
         public void NextTurn(Game game, Player playerToChooseCategory)
-        {                       
+        {
             for(int i = 0; i < game.NumOfGameQuestions; i++)
             {                
                 #region Each question..
@@ -272,11 +272,11 @@ namespace standup
 
                 Random FactGameChance = new Random();
                 int WillFactGameHappenRange = FactGameChance.Next(1, 10);
-                bool WillFactGameHappen = WillFactGameHappenRange == 1 || WillFactGameHappenRange == 10;
+                bool WillFactGameHappen = WillFactGameHappenRange == 9 || WillFactGameHappenRange == 2;
 
                 Random WhoAmIGameChance = new Random();
-                int WillWhoAmIHappenRange = FactGameChance.Next(11, 21);
-                bool WillWhoAmIHappen = WillFactGameHappenRange == 11 || WillFactGameHappenRange == 20;
+                int WillWhoAmIHappenRange = WhoAmIGameChance.Next(1, 10);
+                bool WillWhoAmIHappen = WillWhoAmIHappenRange == 8 || WillWhoAmIHappenRange == 1;
 
                 if (WillFactGameHappen && !WillWhoAmIHappen)
                 {
@@ -388,7 +388,7 @@ namespace standup
             int ChoosenCategoryNumber = 0;
 
             Random doubleM = new Random();
-            int chanceOfDoubleRound = doubleM.Next(1, 9);
+            int chanceOfDoubleRound = doubleM.Next(1, 7);
             bool IsDoubleRound = chanceOfDoubleRound == 3;
 
             #region The nightmare of the automatic respond after 13 seconds
@@ -585,7 +585,7 @@ namespace standup
             QuestionAbout.Stop();
             SoundPlayer Topic = new SoundPlayer($@"You-think-you-are-smart\CategorySounds\{choosingthis.choosenCategory}.wav");
             Topic.Play();
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
             while (Console.KeyAvailable)
             {
                 ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -3515,6 +3515,12 @@ namespace standup
             #endregion
 
             #region The game itself
+
+            foreach(Player player in game.GamePlayers)
+            {
+                player.HasThePlayerChoosenAnswer = false;
+                player.WrongAnswerChoosen = 0;
+            }
 
             Console.Clear();
 
