@@ -161,7 +161,6 @@ namespace standup
         #endregion
 
         #region Game start
-
         public void GameStart(Game game)
         {
 
@@ -1989,7 +1988,7 @@ namespace standup
                 //Console.WriteLine("4 seconds to read the question itself..");
                 //Console.WriteLine("Next 5 seconds will be to actually answer.");
                 Console.WriteLine($@"{question.QuestionText}");
-                Thread.Sleep(4000);
+                Thread.Sleep(2000);
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -2003,7 +2002,7 @@ namespace standup
                 List<int> WrongAnswersGiven = new List<int>();
 
                 Console.WriteLine("");
-
+                
                 for (int PossibleAnswer = 0; PossibleAnswer < 4; PossibleAnswer++)
                 {
                     Console.Clear();
@@ -2042,7 +2041,7 @@ namespace standup
 
                     #endregion
 
-                    #region The nightmare of the timer
+                #region The nightmare of the timer
 
                     double SecondsThatPassed = 0;
                     string TheKeyPressed = "";
@@ -2050,18 +2049,18 @@ namespace standup
                     ConsoleKeyInfo buzzer = new ConsoleKeyInfo();
                     //timerThread.Start();
 
-                    while (!Console.KeyAvailable && SecondsThatPassed < 3)
+                    while (!Console.KeyAvailable && SecondsThatPassed < 2.5)
                     {
 
                         Thread.Sleep(500);
                         SecondsThatPassed = SecondsThatPassed + 0.5;
-                        if (SecondsThatPassed == 3)
+                        if (SecondsThatPassed == 2.5)
                         {
                             break;
                         }
                     }
 
-                    if (SecondsThatPassed >= 3)
+                    if (SecondsThatPassed >= 2.5)
                     {
 
                     }

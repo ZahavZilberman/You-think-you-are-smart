@@ -63,8 +63,7 @@ namespace standup
                     List<string> AnswersAll = new List<string>();
                     AnswerPath = Questions.ElementAt(i).Element($@"Answer{answerNum + 1}Text").Value;
                     string ActualAnswer = File.ReadAllText(AnswerPath);                                       
-                }
-                
+                }                
 
                 int QuestionPositionInDatabase = int.Parse(Questions.ElementAt(i).Element("Number").Value);
                 int correctAnswer = int.Parse(Questions.ElementAt(i).Element("CorrectAnswer").Value);
