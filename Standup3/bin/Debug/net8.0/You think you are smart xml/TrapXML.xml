@@ -6,7 +6,7 @@
     <Answer2Text>You-think-you-are-smart\TrapQuestions\Question1\answer2.txt</Answer2Text>
     <Answer3Text>You-think-you-are-smart\TrapQuestions\Question1\answer3.txt</Answer3Text>
     <Answer4Text>You-think-you-are-smart\TrapQuestions\Question1\answer4.txt</Answer4Text>
-    <CorrectAnswer>1</CorrectAnswer>
+    <CorrectAnswer>3</CorrectAnswer>
     <Number>1</Number>
   </Question>
   <Question>
@@ -15,7 +15,7 @@
     <Answer2Text>You-think-you-are-smart\TrapQuestions\Question2\answer2.txt</Answer2Text>
     <Answer3Text>You-think-you-are-smart\TrapQuestions\Question2\answer3.txt</Answer3Text>
     <Answer4Text>You-think-you-are-smart\TrapQuestions\Question2\answer4.txt</Answer4Text>
-    <CorrectAnswer>2</CorrectAnswer>
+    <CorrectAnswer>1</CorrectAnswer>
     <Number>2</Number>
   </Question>
   <Question>
@@ -24,7 +24,7 @@
     <Answer2Text>You-think-you-are-smart\TrapQuestions\Question3\answer2.txt</Answer2Text>
     <Answer3Text>You-think-you-are-smart\TrapQuestions\Question3\answer3.txt</Answer3Text>
     <Answer4Text>You-think-you-are-smart\TrapQuestions\Question3\answer4.txt</Answer4Text>
-    <CorrectAnswer>3</CorrectAnswer>
+    <CorrectAnswer>2</CorrectAnswer>
     <Number>3</Number>
   </Question>
   <Question>
@@ -33,7 +33,7 @@
     <Answer2Text>You-think-you-are-smart\TrapQuestions\Question4\answer2.txt</Answer2Text>
     <Answer3Text>You-think-you-are-smart\TrapQuestions\Question4\answer3.txt</Answer3Text>
     <Answer4Text>You-think-you-are-smart\TrapQuestions\Question4\answer4.txt</Answer4Text>
-    <CorrectAnswer>4</CorrectAnswer>
+    <CorrectAnswer>2</CorrectAnswer>
     <Number>4</Number>
   </Question>
   <Question>
@@ -42,7 +42,7 @@
     <Answer2Text>You-think-you-are-smart\TrapQuestions\Question5\answer2.txt</Answer2Text>
     <Answer3Text>You-think-you-are-smart\TrapQuestions\Question5\answer3.txt</Answer3Text>
     <Answer4Text>You-think-you-are-smart\TrapQuestions\Question5\answer4.txt</Answer4Text>
-    <CorrectAnswer>1</CorrectAnswer>
+    <CorrectAnswer>2</CorrectAnswer>
     <Number>5</Number>
   </Question>
   <Question>

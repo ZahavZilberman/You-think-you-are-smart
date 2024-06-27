@@ -182,8 +182,6 @@ namespace standup
                 sound.Play();
             }
             */
-
-            
             
 
             Random FactGameChance = new Random();
@@ -244,11 +242,11 @@ namespace standup
 
         public void NextTurn(Game game, Player playerToChooseCategory)
         {
-            for(int i = 0; i < game.NumOfGameQuestions; i++)
-            {                
-                #region Each question..
-
+            for (int i = 0; i < game.NumOfGameQuestions; i++)
+            {
                 game.CountOfQuestion = i + 1;
+
+                #region Each question..
 
                 #region determating if the next question is going to be normal or else            
                 /*
@@ -270,12 +268,12 @@ namespace standup
                 */
 
                 Random FactGameChance = new Random();
-                int WillFactGameHappenRange = FactGameChance.Next(1, 10);
-                bool WillFactGameHappen = WillFactGameHappenRange == 9 || WillFactGameHappenRange == 2;
+                int WillFactGameHappenRange = FactGameChance.Next(1, 9);
+                bool WillFactGameHappen = WillFactGameHappenRange == 8 || WillFactGameHappenRange == 2;
 
                 Random WhoAmIGameChance = new Random();
-                int WillWhoAmIHappenRange = WhoAmIGameChance.Next(1, 10);
-                bool WillWhoAmIHappen = WillWhoAmIHappenRange == 8 || WillWhoAmIHappenRange == 1;
+                int WillWhoAmIHappenRange = WhoAmIGameChance.Next(1, 9);
+                bool WillWhoAmIHappen = WillWhoAmIHappenRange == 7 || WillWhoAmIHappenRange == 1;
 
                 if (WillFactGameHappen && !WillWhoAmIHappen)
                 {
@@ -312,6 +310,10 @@ namespace standup
                     //CorrectOrFalseGame(game);
                     //TrapMode(game);
                     ChooseCategory QuestionCategoryDetails = ChooseCategoryFunction(game, game.GamePlayers.ElementAt(0));
+                    if(QuestionCategoryDetails == null)
+                    {
+                        return;
+                    }
                     game = NormalQuestion(game, QuestionCategoryDetails, false, true, 10000);               
                     /*
                     while(game.CountOfQuestion < game.NumOfGameQuestions)
@@ -323,10 +325,12 @@ namespace standup
                 if(IsOnWhoAmIMode)
                 {
                     game = WhoAmIGame(game, false);
+                    i = i - 1;
                 }
                 if(IsOnCorrectOrFalseMode)
                 {
                     game = CorrectOrFalseGame(game);
+                    i = i - 1;
                 }
 
                 #endregion
@@ -340,7 +344,7 @@ namespace standup
 
         #region Choose Category
 
-        public ChooseCategory ChooseCategoryFunction(Game game, Player PlayerToChoose)
+        public ChooseCategory? ChooseCategoryFunction(Game game, Player PlayerToChoose)
         {
             ChooseCategory choosingthis = new ChooseCategory(game, PlayerToChoose.PlayerNumber);
 
@@ -362,15 +366,16 @@ namespace standup
             Random MoneySecondCategory = new Random();
             int Money2ndCategory = (MoneyFirstCategory.Next(1, 4)) * 1000;
 
-            Console.WriteLine($@"1. {choosingthis.AllCategoriesNames.ElementAt(FirstCategoryDisplayed)} ({Money1stCategory} dollars)");
+            Console.WriteLine($@"1. {choosingthis.AllCategoriesNames.ElementAt(FirstCategoryDisplayed)} (${Money1stCategory})");
             Console.WriteLine();
-            Console.WriteLine($@"2. {choosingthis.AllCategoriesNames.ElementAt(SecondCategoryDisplayed)} ({Money2ndCategory} dollars)");
+            Console.WriteLine($@"2. {choosingthis.AllCategoriesNames.ElementAt(SecondCategoryDisplayed)} (${Money2ndCategory})");
             Console.WriteLine();
 
 
             SoundPlayer PlayerSound = new SoundPlayer($@"You-think-you-are-smart\NameSounds\Player{PlayerToChoose.PlayerNumber}.wav");
             PlayerSound.Play();
             Thread.Sleep(1800);
+            PlayerSound.Dispose();
             while (Console.KeyAvailable)
             {
                 ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -379,6 +384,7 @@ namespace standup
             SoundPlayer ChooseCategory = new SoundPlayer($@"You-think-you-are-smart\OtherSounds\choosecategory.wav");
             ChooseCategory.Play();
             Thread.Sleep(2000);
+            ChooseCategory.Dispose();
             while (Console.KeyAvailable)
             {
                 ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -429,6 +435,7 @@ namespace standup
             if (SecondsThatPassed >= 13)
             {
                 CategoryMusic.Stop();
+                CategoryMusic.Dispose();
                 choosingthis.IsRandomCategoryHasBeenChoose = true;
 
                 if (choosingthis.RandomChoiceIfNeeded == 0)
@@ -445,6 +452,7 @@ namespace standup
                 SoundPlayer ZahavChoosesCategory = new SoundPlayer($@"You-think-you-are-smart\OtherSounds\CategoryGameChooses.wav");
                 ZahavChoosesCategory.Play();
                 Thread.Sleep(5000);
+                ZahavChoosesCategory.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -454,7 +462,7 @@ namespace standup
                 Console.Beep();
                 if (choosingthis.RandomChoiceIfNeeded == 0)
                 {
-                    Console.WriteLine($@"1. {choosingthis.AllCategoriesNames.ElementAt(FirstCategoryDisplayed)} ({Money1stCategory} dollars)");
+                    Console.WriteLine($@"1. {choosingthis.AllCategoriesNames.ElementAt(FirstCategoryDisplayed)} (${Money1stCategory})");
                     Thread.Sleep(1000);
                     while (Console.KeyAvailable)
                     {
@@ -463,7 +471,7 @@ namespace standup
                 }
                 if (choosingthis.RandomChoiceIfNeeded == 1)
                 {
-                    Console.WriteLine($@"2. {choosingthis.AllCategoriesNames.ElementAt(SecondCategoryDisplayed)} ({Money2ndCategory} dollars)");
+                    Console.WriteLine($@"2. {choosingthis.AllCategoriesNames.ElementAt(SecondCategoryDisplayed)} (${Money2ndCategory})");
                     Thread.Sleep(1000);
                     while (Console.KeyAvailable)
                     {
@@ -546,15 +554,60 @@ namespace standup
                             ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
                         }
                     }
+
+                    #region If the player pauses the game..
+
                     if (TheKeyPressed == "Escape")
                     {
                         Console.Beep();
                         Console.Clear();
-                        Console.WriteLine("The game has been paused. Press enter to return to choosing category.");
-                        Console.ReadLine();
-                        choosingthis = ChooseCategoryFunction(game, PlayerToChoose);
-                        return choosingthis;
+                        Console.WriteLine("The game has been paused.");
+                        Console.WriteLine("Press enter to continue the game.");
+                        Console.WriteLine("Press space for a new game with the same players.");
+                        Console.WriteLine("Press e to exit.");
+                        Console.WriteLine("Press n for a new game without the same players.");
+                        ConsoleKeyInfo choiceOfEscape = Console.ReadKey(true);
+                        string choiceEscapeText = choiceOfEscape.Key.ToString();
+                        while(choiceEscapeText.ToUpper() != "N" && choiceEscapeText.ToUpper() != "E" && choiceEscapeText != "Enter" && choiceEscapeText != "Spacebar")
+                        {
+                            choiceOfEscape = Console.ReadKey(true);
+                            choiceEscapeText = choiceOfEscape.Key.ToString();
+                            // this time let's just do nothing, no note
+                        }
+
+                        while (Console.KeyAvailable)
+                        {
+                            ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
+                        }
+
+                        if(choiceEscapeText == "Enter")
+                        {
+                            choosingthis = ChooseCategoryFunction(game, PlayerToChoose);
+                            return choosingthis;
+                        }
+                        if(choiceEscapeText == "Spacebar")
+                        {
+                            List<Player> players = new List<Player>();
+                            for (int PlayerNum = 0; PlayerNum < game.GamePlayers.Count; PlayerNum++)
+                            {
+                                Player newPlayer = new Player(PlayerNum + 1, game.GamePlayers.ElementAt(PlayerNum).PlayerName);
+                                players.Add(newPlayer);
+                            }
+                            Game NewGame = new Game(players, game.NumOfGameQuestions, players.Count);
+                            Console.Clear();
+                            NewGame.NextTurn(NewGame, NewGame.GamePlayers.ElementAt(0));
+                        }
+                        if(choiceEscapeText.ToUpper() == "E")
+                        {
+                            Environment.Exit(0);
+                        }
+                        if (choiceEscapeText.ToUpper() == "N")
+                        {
+                            return null;
+                        }
                     }
+
+                    #endregion
                 }
             }
 
@@ -577,6 +630,7 @@ namespace standup
             SoundPlayer QuestionAbout = new SoundPlayer($@"You-think-you-are-smart\CategorySounds\QuestionIsAbout...wav");
             QuestionAbout.Play();
             Thread.Sleep(2000);
+            QuestionAbout.Dispose();
             while (Console.KeyAvailable)
             {
                 ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -599,7 +653,8 @@ namespace standup
             if (choosingthis.MoneyForThisCategoryQuestion == 1000)
             {
                 money1000.Play();
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
+                money1000.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -609,6 +664,7 @@ namespace standup
             {
                 money2000.Play();
                 Thread.Sleep(3000);
+                money2000.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -618,6 +674,7 @@ namespace standup
             {
                 money3000.Play();
                 Thread.Sleep(3000);
+                money3000.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -627,6 +684,7 @@ namespace standup
             {
                 money4000.Play();
                 Thread.Sleep(3000);
+                money4000.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -636,6 +694,7 @@ namespace standup
             {
                 money6000.Play();
                 Thread.Sleep(3000);
+                money6000.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -689,6 +748,7 @@ namespace standup
                 SoundPlayer DoubleRound = new SoundPlayer($@"You-think-you-are-smart\CategorySounds\DoubleRound.wav");
                 DoubleRound.Play();
                 Thread.Sleep(3500);
+                DoubleRound.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -697,7 +757,8 @@ namespace standup
                 if (choosingthis.MoneyForThisCategoryQuestion == 1000)
                 {
                     money1000.Play();
-                    Thread.Sleep(2000);
+                    Thread.Sleep(3000);
+                    money1000.Dispose();
                     while (Console.KeyAvailable)
                     {
                         ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -707,6 +768,7 @@ namespace standup
                 {
                     money2000.Play();
                     Thread.Sleep(3000);
+                    money2000.Dispose();
                     while (Console.KeyAvailable)
                     {
                         ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -716,6 +778,7 @@ namespace standup
                 {
                     money3000.Play();
                     Thread.Sleep(3000);
+                    money3000.Dispose();
                     while (Console.KeyAvailable)
                     {
                         ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -725,6 +788,7 @@ namespace standup
                 {
                     money4000.Play();
                     Thread.Sleep(3000);
+                    money4000.Dispose();
                     while (Console.KeyAvailable)
                     {
                         ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -734,6 +798,7 @@ namespace standup
                 {
                     money6000.Play();
                     Thread.Sleep(3000);
+                    money6000.Dispose();
                     while (Console.KeyAvailable)
                     {
                         ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -1165,7 +1230,7 @@ namespace standup
                 }
                 else
                 {
-                    Console.WriteLine($@"3. {game.GamePlayers.ElementAt(1).PlayerName} (${game.GamePlayers.ElementAt(1).PreTrapSum}) (Wrong..)");
+                    Console.WriteLine($@"3. {game.GamePlayers.ElementAt(2).PlayerName} (${game.GamePlayers.ElementAt(2).PreTrapSum}) (Wrong..)");
                 }
             }
 
@@ -1205,6 +1270,7 @@ namespace standup
                 SoundPlayer QuestionSaying = new SoundPlayer($@"{TheQuestion.SoundPath}");
                 QuestionSaying.Play();
                 Thread.Sleep(5000);
+                QuestionSaying.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -1248,6 +1314,7 @@ namespace standup
                 SoundPlayer NoAnswer = new SoundPlayer($@"You-think-you-are-smart\QuestionSound\NoOneAnswered.wav");
                 NoAnswer.Play();
                 Thread.Sleep(6500);
+                NoAnswer.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -1399,12 +1466,12 @@ namespace standup
                         else if (game.GamePlayers.Count == 2)
                         {
                             Player1AnsweredAlready = game.GamePlayers.ElementAt(0).HasThePlayerChoosenAnswer && ActivatedBuzzer == "M";
-                            Player2AnsweredAlready = game.GamePlayers.ElementAt(1).HasThePlayerChoosenAnswer && ActivatedBuzzer == "OEMPLUX";
+                            Player2AnsweredAlready = game.GamePlayers.ElementAt(1).HasThePlayerChoosenAnswer && ActivatedBuzzer == "OEMPLUS";
                         }
                         else if (game.GamePlayers.Count == 3)
                         {
                             Player1AnsweredAlready = game.GamePlayers.ElementAt(0).HasThePlayerChoosenAnswer && ActivatedBuzzer == "M";
-                            Player2AnsweredAlready = game.GamePlayers.ElementAt(1).HasThePlayerChoosenAnswer && ActivatedBuzzer == "OEMPLUX";
+                            Player2AnsweredAlready = game.GamePlayers.ElementAt(1).HasThePlayerChoosenAnswer && ActivatedBuzzer == "OEMPLUS";
                             Player3AnsweredAlready = game.GamePlayers.ElementAt(2).HasThePlayerChoosenAnswer && ActivatedBuzzer == "A";
                         }
 
@@ -1550,6 +1617,7 @@ namespace standup
                             SoundPlayer NoAnswer = new SoundPlayer($@"You-think-you-are-smart\QuestionSound\NoOneAnswered.wav");
                             NoAnswer.Play();
                             Thread.Sleep(6500);
+                            NoAnswer.Dispose();
                             while (Console.KeyAvailable)
                             {
                                 ConsoleKeyInfo UnTimedKey = Console.ReadKey();
@@ -1612,6 +1680,7 @@ namespace standup
                                 SoundPlayer EveryoneAreWrong = new SoundPlayer($@"You-think-you-are-smart\QuestionSound\EveryoneAreWrong.wav");
                                 EveryoneAreWrong.Play();
                                 Thread.Sleep(3500);
+                                EveryoneAreWrong.Dispose();
                                 while (Console.KeyAvailable)
                                 {
                                     ConsoleKeyInfo UnTimedKey = Console.ReadKey();
@@ -1677,6 +1746,7 @@ namespace standup
                                 QuestionMusic.Stop();
                                 correct.Play();
                                 Thread.Sleep(600);
+                                correct.Dispose();
                                 while (Console.KeyAvailable)
                                 {
                                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -1738,6 +1808,7 @@ namespace standup
                                 QuestionMusic.Stop();
                                 Incorrect.Play();
                                 Thread.Sleep(1200);
+                                Incorrect.Dispose();
                                 while (Console.KeyAvailable)
                                 {
                                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -1781,6 +1852,7 @@ namespace standup
                                     SoundPlayer EveryoneAreWrong = new SoundPlayer($@"You-think-you-are-smart\QuestionSound\EveryoneAreWrong.wav");
                                     EveryoneAreWrong.Play();
                                     Thread.Sleep(3500);
+                                    EveryoneAreWrong.Dispose();
                                     while (Console.KeyAvailable)
                                     {
                                         ConsoleKeyInfo UnTimedKey = Console.ReadKey();
@@ -1905,8 +1977,6 @@ namespace standup
 
             #region Instructions part
 
-
-
             #region The general instructions and buzzers
 
             #region Instructions
@@ -1919,7 +1989,13 @@ namespace standup
             Console.WriteLine();
             Console.WriteLine("Press any key to skip this repetitive shit.");
 
+            while (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
+            }
+
             SoundPlayer InstructionsAudio = new SoundPlayer(trap.FilePathToInstructions);
+            double SecondsThatPassedInstructions = 0;
             int startSecond = DateTime.Now.Second;
             int startMinute = DateTime.Now.Minute;
             int endSecond;
@@ -1935,16 +2011,19 @@ namespace standup
                 endSecond = startSecond - 43;
             }
             InstructionsAudio.Play();
-            while (!Console.KeyAvailable || (DateTime.Now.Second == endSecond && DateTime.Now.Minute == endMinute))
+            while (!Console.KeyAvailable && SecondsThatPassedInstructions < 18)
             {
                 Thread.Sleep(100);
+                SecondsThatPassedInstructions = SecondsThatPassedInstructions + 0.1;
             }
             SoundPlayer InstructionsOtherAudio = new SoundPlayer(@"You-think-you-are-smart\OtherSounds\SkippedInstructions.wav");
             if (Console.KeyAvailable == true)
             {
                 InstructionsAudio.Stop();
+                InstructionsAudio.Dispose();
                 InstructionsOtherAudio.Play();
                 Thread.Sleep(3750);
+                InstructionsOtherAudio.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -1952,9 +2031,14 @@ namespace standup
 
                 Console.Clear();
             }
-            if (DateTime.Now.Second == endSecond && DateTime.Now.Minute == endMinute)
+            if (SecondsThatPassedInstructions >= 18)
             {
                 Console.Clear();
+                while (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
+                }
+                InstructionsAudio.Dispose();
             }
 
             #endregion
@@ -1974,6 +2058,7 @@ namespace standup
             }
 
             Random rnd = new Random();
+            List<TrapQuestion> TrapQuestionsAnswered = new List<TrapQuestion>();
 
             for (int i = 0; i < 4; i++)
             {
@@ -1981,6 +2066,13 @@ namespace standup
 
                 int ChoosenQuestion = rnd.Next(0, trap.Questions.Count);
                 TrapQuestion question = trap.AllQuestions.ElementAt(ChoosenQuestion);
+                while(TrapQuestionsAnswered.Contains(question))
+                {
+                    ChoosenQuestion = rnd.Next(0, trap.Questions.Count);
+                    question = trap.AllQuestions.ElementAt(ChoosenQuestion);
+                }
+
+                TrapQuestionsAnswered.Add(question);
 
                 #region The time for the question itself to be read
 
@@ -2007,11 +2099,12 @@ namespace standup
                 {
                     Console.Clear();
 
-                    Console.WriteLine($@"{question.QuestionText}");
+                    
+                    Console.WriteLine($@"Question: {question.QuestionText}");
 
                     Console.WriteLine("");
 
-                    Console.WriteLine($@"{question.PossibleAnswers.ElementAt(PossibleAnswer)}");
+                    Console.WriteLine($@"Answer: {question.PossibleAnswers.ElementAt(PossibleAnswer)}");
                     Console.WriteLine("");
                     Console.WriteLine("");
 
@@ -2196,6 +2289,7 @@ namespace standup
                                  * than, no additional user kep press is required
                                  */
 
+
                                 Thread.Sleep(3000);
                                 while (Console.KeyAvailable)
                                 {
@@ -2243,6 +2337,7 @@ namespace standup
 
                                 SoundPlayer Incorrect = new SoundPlayer($@"You-think-you-are-smart\QuestionSound\IncorrectAnswer.wav");
                                 Incorrect.Play();
+                                Incorrect.Dispose();
                                 Thread.Sleep(1200);
                                 while (Console.KeyAvailable)
                                 {
@@ -2271,13 +2366,9 @@ namespace standup
                             }
                         }
                     }
-
-
-
                     //bool Player1AnsweredOrNot = false;
                     //bool Player2AnsweredOrNot = false;
                     //bool Player3AnsweredOrNot = true;
-
 
                 }
 
@@ -2335,6 +2426,7 @@ namespace standup
             SoundPlayer GameOverSpeech = new SoundPlayer($@"You-think-you-are-smart\OtherSounds\GameOverSpeech.wav");
             GameOverSpeech.Play();
             Thread.Sleep(5000);
+            GameOverSpeech.Dispose();
             while (Console.KeyAvailable)
             {
                 ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -2349,6 +2441,7 @@ namespace standup
             SoundPlayer HighScoreSoundEffect = new SoundPlayer($@"You-think-you-are-smart\OtherSounds\HighScoreSoundEffect.wav");
             HighScoreSoundEffect.Play();
             Thread.Sleep(2000);
+            HighScoreSoundEffect.Dispose();
             while (Console.KeyAvailable)
             {
                 ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -2584,6 +2677,7 @@ namespace standup
 
             result.Play();
             Thread.Sleep(2000);
+            result.Dispose();
             while (Console.KeyAvailable)
             {
                 ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -2649,6 +2743,7 @@ namespace standup
             {
                 WinnerPlayerSound.Play();
                 Thread.Sleep(3000);
+                WinnerPlayerSound.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -2670,6 +2765,8 @@ namespace standup
 
                 ResultGoodOrBad.Play();
                 Thread.Sleep(4000);
+                ResultGoodOrBad.Dispose();
+
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -2946,8 +3043,21 @@ namespace standup
                 bool ShouldWeFinish = ScoreNumber + 1 == scores.Count;
                 if (ShouldWeFinish)
                 {
-                    ScoreNumber = 4;
-                    break;
+                    if(scores.Count < 5)
+                    {
+                        for (int allScore = scores.Count; allScore < 5; allScore++)
+                        {
+                            Console.WriteLine($@"{allScore + 1}.");
+                        }
+                        ScoreNumber = 4;
+                        break;
+                    }
+                    else
+                    {
+                        ScoreNumber = 4;
+                        break;
+                    }
+                    
                 }
             }
 
@@ -2956,7 +3066,14 @@ namespace standup
             {
                 if(player.PreTrapSum + player.TrapSum == BestScore)
                 {
-                    if(MoneyWorstToBestAfter.ElementAt(MoneyWorstToBestAfter.Count - 1) > MoneyWorstToBestAfter.ElementAt(MoneyWorstToBestAfter.Count - 2))
+                    if(MoneyWorstToBestAfter.Count > 1)
+                    {
+                        if (MoneyWorstToBestAfter.ElementAt(MoneyWorstToBestAfter.Count - 1) > MoneyWorstToBestAfter.ElementAt(MoneyWorstToBestAfter.Count - 2))
+                        {
+                            IsThereANewWR = true;
+                        }
+                    }
+                    else
                     {
                         IsThereANewWR = true;
                     }
@@ -2968,6 +3085,7 @@ namespace standup
                 SoundPlayer newWRSound = new SoundPlayer($@"You-think-you-are-smart\OtherSounds\newWR.wav");
                 newWRSound.Play();
                 Thread.Sleep(2700);
+                newWRSound.Dispose();
                 while (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -3044,11 +3162,12 @@ namespace standup
 
             Console.WriteLine("Press enter for a new game with new players,");
             Console.WriteLine("Press space for a new game with the same players.");
+            Console.WriteLine("Press e to exit the game.");
 
             ConsoleKeyInfo choice = Console.ReadKey(true);
-            while (choice.Key.ToString().ToUpper() != "ENTER" && choice.Key.ToString().ToUpper() != "SPACEBAR")
+            while (choice.Key.ToString().ToUpper() != "ENTER" && choice.Key.ToString().ToUpper() != "SPACEBAR" && choice.Key.ToString().ToUpper() != "E")
             {
-                Console.WriteLine("Press only on space or enter!");
+                Console.WriteLine("Press only on space or enter or e!");
                 choice = Console.ReadKey(true);
             }
             string ChoiceIs = choice.Key.ToString();
@@ -3071,12 +3190,13 @@ namespace standup
                     players.Add(newPlayer);
                 }
                 Game NewGame = new Game(players, game.NumOfGameQuestions, players.Count);
-                NewGame.Instructions();
                 Console.Clear();
                 NewGame.NextTurn(NewGame, NewGame.GamePlayers.ElementAt(0));
             }
-
-            
+            if (ChoiceIs.ToUpper() == "E")
+            {
+                Environment.Exit(0);
+            }
 
             return;
 
@@ -3127,7 +3247,10 @@ namespace standup
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
                 }
-                Console.Clear();
+                if(i < 44)
+                {
+                    Console.Clear();
+                }
             }
 
             while (Console.KeyAvailable)
@@ -3239,8 +3362,15 @@ namespace standup
                     ConsoleKeyInfo buzzer = new ConsoleKeyInfo();
                     while (!Console.KeyAvailable && SecondsThatPassedInGame < 30)
                     {
-
                         Thread.Sleep(1000);
+
+                        Console.Clear();
+                        Console.WriteLine($@"{TrueFalseGame.ChoosenQuestionRandom.QuestionContent}");
+                        Console.WriteLine("");
+                        Console.WriteLine("Yes");
+                        Console.WriteLine("No");
+                        Console.WriteLine();
+
                         SecondsThatPassedInGame = SecondsThatPassedInGame + 1;
                         Console.Write($@" {30 - SecondsThatPassedInGame}");
                         if (SecondsThatPassed >= 30)
@@ -3422,15 +3552,13 @@ namespace standup
 
         #region Who am I game
 
-        public Game WhoAmIGame(Game game, bool IntrductionHasHappend)
+        public Game WhoAmIGame(Game game, bool IntroductionHasHappend)
         {
             #region Intrudction part
 
-            if (!IntrductionHasHappend)
+            if (!IntroductionHasHappend)
             {
-                Console.Clear();
-                SoundPlayer WhoAmIIntrudction = new SoundPlayer($@"You-think-you-are-smart\WhoAmIQuestions\Instructions.wav");
-                WhoAmIIntrudction.Play();
+                Console.Clear();                
 
                 string BlankSpace = "";
                 for (int i = 0; i < 30; i++)
@@ -3452,6 +3580,9 @@ namespace standup
                 {
                     ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
                 }
+
+                SoundPlayer WhoAmIIntrudction = new SoundPlayer($@"You-think-you-are-smart\WhoAmIQuestions\Instructions.wav");
+                WhoAmIIntrudction.Play();
 
                 int startSecond = DateTime.Now.Second;
                 int startMinute = DateTime.Now.Minute;
@@ -3483,8 +3614,10 @@ namespace standup
                 if (Console.KeyAvailable == true)
                 {
                     WhoAmIIntrudction.Stop();
+                    WhoAmIIntrudction.Dispose();
                     InstructionsOtherAudio.Play();
                     Thread.Sleep(3750);
+                    InstructionsOtherAudio.Dispose();
                     while (Console.KeyAvailable)
                     {
                         ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -3496,7 +3629,6 @@ namespace standup
                 if (SecondsThatPassed >= 17)
                 {
                     Console.Clear();
-                    Thread.Sleep(2000);
                     while (Console.KeyAvailable)
                     {
                         ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
@@ -3653,7 +3785,7 @@ namespace standup
                     }
                     else
                     {
-                        Console.WriteLine($@"3. {game.GamePlayers.ElementAt(1).PlayerName} (${game.GamePlayers.ElementAt(1).PreTrapSum}) (Wrong..)");
+                        Console.WriteLine($@"3. {game.GamePlayers.ElementAt(2).PlayerName} (${game.GamePlayers.ElementAt(2).PreTrapSum}) (Wrong..)");
                     }
                 }
 
@@ -3676,20 +3808,20 @@ namespace standup
                 Console.WriteLine("");
                 ConsoleKeyInfo buzzer = new ConsoleKeyInfo();
 
-                while (!Console.KeyAvailable && SecondsThatPassed3 < 5)
+                while (!Console.KeyAvailable && SecondsThatPassed3 < 10)
                 {
                     Console.Write($@" ${WhoAmIObject.choosenQuestion.Money}");
-                    WhoAmIObject.choosenQuestion.Money = WhoAmIObject.choosenQuestion.Money - 500;
-                    if (SecondsThatPassed3 >= 5)
+                    WhoAmIObject.choosenQuestion.Money = WhoAmIObject.choosenQuestion.Money - 250;
+                    if (SecondsThatPassed3 >= 10)
                     {
-                        WhoAmIObject.choosenQuestion.Money = WhoAmIObject.choosenQuestion.Money + 500;
+                        WhoAmIObject.choosenQuestion.Money = WhoAmIObject.choosenQuestion.Money + 250;
                         break;
                     }
                     Thread.Sleep(1000);
                     SecondsThatPassed3 = SecondsThatPassed3 + 1;
                     WhoAmIObject.choosenQuestion.TimeLeft = WhoAmIObject.choosenQuestion.TimeLeft - 1;
                 }
-                if (SecondsThatPassed3 >= 5)
+                if (SecondsThatPassed3 >= 10)
                 {
                     ExtraSecondsUntilNextClue = 0;
                     // than continue to the next clue
@@ -3811,12 +3943,12 @@ namespace standup
                     else if (game.GamePlayers.Count == 2)
                     {
                         Player1AnsweredAlready = game.GamePlayers.ElementAt(0).HasThePlayerChoosenAnswer && ActivatedBuzzer == "M";
-                        Player2AnsweredAlready = game.GamePlayers.ElementAt(1).HasThePlayerChoosenAnswer && ActivatedBuzzer == "OEMPLUX";
+                        Player2AnsweredAlready = game.GamePlayers.ElementAt(1).HasThePlayerChoosenAnswer && ActivatedBuzzer == "OEMPLUS";
                     }
                     else if (game.GamePlayers.Count == 3)
                     {
                         Player1AnsweredAlready = game.GamePlayers.ElementAt(0).HasThePlayerChoosenAnswer && ActivatedBuzzer == "M";
-                        Player2AnsweredAlready = game.GamePlayers.ElementAt(1).HasThePlayerChoosenAnswer && ActivatedBuzzer == "OEMPLUX";
+                        Player2AnsweredAlready = game.GamePlayers.ElementAt(1).HasThePlayerChoosenAnswer && ActivatedBuzzer == "OEMPLUS";
                         Player3AnsweredAlready = game.GamePlayers.ElementAt(2).HasThePlayerChoosenAnswer && ActivatedBuzzer == "A";
                     }
 
@@ -3893,6 +4025,11 @@ namespace standup
                     //Thread count = new Thread(new ThreadStart(RunTimerForWhoAmIAndCorrectOrFalseModes));
                     //count.Start();
 
+                    /*
+                     * Console.Write($@" {10 - SecondsForAnswer}");
+                            SecondsForAnswer = SecondsForAnswer + 1;
+                            Thread.Sleep(1000);
+                    */
                     DateTime now = DateTime.Now;
                     string PlayerAnswer = Console.ReadLine();
                     DateTime after = DateTime.Now;
@@ -3908,6 +4045,7 @@ namespace standup
                         SoundPlayer NoAnswer = new SoundPlayer($@"You-think-you-are-smart\QuestionSound\NoOneAnswered.wav");
                         NoAnswer.Play();
                         Thread.Sleep(6500);
+                        NoAnswer.Dispose();
                         while (Console.KeyAvailable)
                         {
                             ConsoleKeyInfo UnTimedKey = Console.ReadKey();

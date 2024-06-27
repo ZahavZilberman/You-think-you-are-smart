@@ -11,11 +11,15 @@ using System.Numerics;
 using NAudio;
 using NAudio.Wave;
 using System.Runtime.InteropServices;
+using System.Speech.Synthesis;
+using NAudio.Utils;
 
 namespace standup
 {
     class Program
     {
+        #region Miscellnous
+
         const uint ENABLE_QUICK_EDIT_MODE = 0x0040;
         const uint ENABLE_EXTENDED_FLAGS = 0x0080;
 
@@ -28,10 +32,102 @@ namespace standup
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern IntPtr GetStdHandle(int nStdHandle);
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        internal static extern IntPtr GetConsoleWindow();
+
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern IntPtr LoadIcon(IntPtr hInstance, IntPtr lpIconName);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern bool SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+        internal const uint WM_SETICON = 0x80;
+        internal static readonly IntPtr IDI_APPLICATION = new IntPtr(0x7F00);
+
+        private struct CONSOLE_FONT_INFO_EX
+        {
+            internal uint cbSize;
+            internal uint nFont;
+            internal Coord dwFontSize;
+            internal int FontFamily;
+            internal int FontWeight;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+            internal string FaceName;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct Coord
+        {
+            internal short X;
+            internal short Y;
+
+            internal Coord(short x, short y)
+            {
+                X = x;
+                Y = y;
+            }
+        }
+
+        private const int StdOutputHandle = -11;
+        private const uint FontType = 0x00040000;
+        private const int TMPF_TRUETYPE = 0x04;
+
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool SetCurrentConsoleFontEx(IntPtr consoleOutput, bool maximumWindow, ref CONSOLE_FONT_INFO_EX consoleCurrentFontEx);
+
+        private static void SetConsoleFont(string fontName, short fontSize)
+        {
+            IntPtr hnd = GetStdHandle(StdOutputHandle);
+            if (hnd != IntPtr.Zero)
+            {
+                CONSOLE_FONT_INFO_EX cfi = new CONSOLE_FONT_INFO_EX
+                {
+                    cbSize = (uint)Marshal.SizeOf<CONSOLE_FONT_INFO_EX>(),
+                    FaceName = fontName,
+                    dwFontSize = new Coord(fontSize, fontSize)
+                };
+                SetCurrentConsoleFontEx(hnd, false, ref cfi);
+            }
+        }
+
+        #endregion
+
         public static void Main()
         {
             DisableQuickEditMode();
+            IntPtr consoleHandle = GetConsoleWindow();
+            IntPtr iconHandle = LoadIcon(IntPtr.Zero, IDI_APPLICATION);
 
+            SendMessage(consoleHandle, WM_SETICON, new IntPtr(1), iconHandle); // Icon for the window
+            SendMessage(consoleHandle, WM_SETICON, new IntPtr(0), iconHandle); // Small icon in the taskbar
+            SetConsoleFont("Consolas", 28);
+
+            /*
+            using (var synthesizer = new SpeechSynthesizer())
+            {
+                synthesizer.SetOutputToWaveFile($@"You-think-you-are-smart\test.wav");
+                synthesizer.Speak("Hello, this is a test of the text to speech conversion.");
+            } // Automatic disposal should ensure file is closed here
+            
+            SpeechSynthesizer synthesizer = new SpeechSynthesizer();
+            synthesizer.SetOutputToWaveFile($@"You-think-you-are-smart\test.wav");
+            PromptBuilder builder = new PromptBuilder();
+            builder.AppendText("Hello, this is a test of the text to speech conversion.");
+            synthesizer.Speak(builder);
+            synthesizer.Dispose();            
+            
+            using (var reader = new WaveFileReader($@"You-think-you-are-smart\test.wav"))
+            using (var converter = WaveFormatConversionStream.CreatePcmStream(reader))
+            using (var adpcmStream = new WaveFormatConversionStream(new AdpcmWaveFormat(8000, 1), converter))
+            using (var writer = new WaveFileWriter($@"You-think-you-are-smart\test3.wav", adpcmStream.WaveFormat))
+            {
+                WaveFileWriter.CreateWaveFile($@"You-think-you-are-smart\test3.wav", adpcmStream);
+                //adpcmStream.CopyTo(writer);
+            }
+
+            Console.ReadLine();
+            */
             // You may have to add the special command that clears the console
             Console.Title = "You think you are smart - The edition of The abnormal thinker";
             Console.ForegroundColor = ConsoleColor.Red;
@@ -198,12 +294,46 @@ namespace standup
                 Console.WriteLine("Hello! how many players are you, from 1 to 3?");
                 int numOfPlayers = 0;
                 ConsoleKeyInfo playersNum = Console.ReadKey(true);
-                while (playersNum.Key.ToString() != "D1" && playersNum.Key.ToString() != "D2" && playersNum.Key.ToString() != "D3")
+                while (playersNum.Key.ToString() != "D1" && playersNum.Key.ToString() != "D2" && playersNum.Key.ToString() != "D3" && playersNum.Key.ToString() != "Escape")
                 {
                     Console.WriteLine("Press on a number between 1-3 only!");
                     playersNum = Console.ReadKey(true);
-
                 }
+
+                #region If the player pauses the game..
+
+                if (playersNum.Key.ToString() == "Escape")
+                {
+                    Console.Beep();
+                    Console.Clear();
+                    Console.WriteLine("The game has been paused.");
+                    Console.WriteLine("Press e to exit.");
+                    Console.WriteLine("Press r to restart the game.");
+                    ConsoleKeyInfo choiceOfEscape = Console.ReadKey(true);
+                    string choiceEscapeText = choiceOfEscape.Key.ToString();
+                    while (choiceEscapeText.ToUpper() != "E" && (choiceEscapeText.ToUpper() != "R"))
+                    {
+                        choiceOfEscape = Console.ReadKey(true);
+                        choiceEscapeText = choiceOfEscape.Key.ToString();
+                        // this time let's just do nothing, no note
+                    }
+
+                    while (Console.KeyAvailable)
+                    {
+                        ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
+                    }               
+                    if (choiceEscapeText.ToUpper() == "E")
+                    {
+                        Environment.Exit(0);
+                    }
+                    if (choiceEscapeText.ToUpper() == "R")
+                    {
+                        Main();
+                        return;
+                    }
+                }
+
+                #endregion
 
                 Console.Beep();
                 Console.Clear();
@@ -223,7 +353,7 @@ namespace standup
 
                 for (int countPlayerNames = 1; countPlayerNames <= numOfPlayers; countPlayerNames++)
                 {
-                    Console.WriteLine("Enter the name of player " + countPlayerNames.ToString() + ":");
+                    Console.WriteLine("Enter the name of player " + countPlayerNames.ToString() + ": (english only!)");
                     playerName = Console.ReadLine();
                     while (playerName.Contains(" ") || playerName == "")
                     {
@@ -234,6 +364,23 @@ namespace standup
                     Player player = new Player(countPlayerNames, playerName);
                     Console.Beep();
                     players.Add(player);
+
+                    SpeechSynthesizer synthesizer = new SpeechSynthesizer();
+                    PromptBuilder builder = new PromptBuilder();
+                    builder.AppendText($@"{playerName}");
+                    synthesizer.SetOutputToWaveFile($@"You-think-you-are-smart\NameSounds\Player{countPlayerNames}.wav");
+                    synthesizer.Speak(builder);                    
+                    synthesizer.Dispose();
+                    /*
+                    using (var reader = new WaveFileReader($@"You-think-you-are-smart\NameSounds\Player{countPlayerNames}.wav"))
+                    using (var converter = WaveFormatConversionStream.CreatePcmStream(reader))
+                    using (var adpcmStream = new WaveFormatConversionStream(new AdpcmWaveFormat(8000, 1), converter))
+                    using (var writer = new WaveFileWriter($@"You-think-you-are-smart\NameSounds\Player{countPlayerNames}", adpcmStream.WaveFormat))
+                    {
+                        WaveFileWriter.CreateWaveFile($@"You-think-you-are-smart\NameSounds\Player{countPlayerNames}", adpcmStream);
+                        //adpcmStream.CopyTo(writer);
+                    } 
+                    */
                 }
 
                 Console.WriteLine();
@@ -246,12 +393,48 @@ namespace standup
                 Console.WriteLine("Do you want 3 o 6 questions?");
                 ConsoleKeyInfo questionsNum = Console.ReadKey(true);
 
-                while (questionsNum.Key.ToString() != "D3" && questionsNum.Key.ToString() != "D6")
+                while (questionsNum.Key.ToString() != "D3" && questionsNum.Key.ToString() != "D6" && questionsNum.Key.ToString() != "Escape")
                 {
                     Console.WriteLine("Press on either 3 or 6!");
                     questionsNum = Console.ReadKey(true);
                 }
                 Console.Beep();
+
+                #region If the player pauses the game..
+
+                if (questionsNum.Key.ToString() == "Escape")
+                {
+                    Console.Beep();
+                    Console.Clear();
+                    Console.WriteLine("The game has been paused.");
+                    Console.WriteLine("Press e to exit.");
+                    Console.WriteLine("Press r to restart the game.");
+                    ConsoleKeyInfo choiceOfEscape = Console.ReadKey(true);
+                    string choiceEscapeText = choiceOfEscape.Key.ToString();
+                    while (choiceEscapeText.ToUpper() != "E" && (choiceEscapeText.ToUpper() != "R"))
+                    {
+                        choiceOfEscape = Console.ReadKey(true);
+                        choiceEscapeText = choiceOfEscape.Key.ToString();
+                        // this time let's just do nothing, no note
+                    }
+
+                    while (Console.KeyAvailable)
+                    {
+                        ConsoleKeyInfo UnTimedKey = Console.ReadKey(true);
+                    }
+                    if (choiceEscapeText.ToUpper() == "E")
+                    {
+                        Environment.Exit(0);
+                    }
+                    if (choiceEscapeText.ToUpper() == "R")
+                    {
+                        Main();
+                        return;
+                    }
+                }
+
+                #endregion
+
                 string TheQuestionNumKey = questionsNum.Key.ToString();
                 ChoosenQuestions = int.Parse(TheQuestionNumKey.Substring(1));
 
@@ -270,7 +453,6 @@ namespace standup
                 game.NextTurn(game, game.GamePlayers.ElementAt(0));
 
                 #endregion
-
             }
         }
 

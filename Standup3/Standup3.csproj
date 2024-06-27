@@ -5,10 +5,23 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ApplicationIcon>c.c-another-cute-look.icon.ico</ApplicationIcon>
+    <StartupObject>standup.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="c.c-another-cute-look.icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="c.c-another-cute-look.icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="System.Speech" Version="8.0.0" />
     <PackageReference Include="System.Windows.Extensions" Version="8.0.0" />
   </ItemGroup>
 
